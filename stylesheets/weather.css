@@ -1,0 +1,52 @@
+html { 
+  background: url('../assets/background.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container {
+  margin-top: 6%;
+}
+
+.weather-card {
+  width: 30rem;
+  height: 30rem;
+  background-color: #ccf7ff;
+  margin: auto;
+  border: solid 25px white;
+}
+
+.weather-display-card {
+  width: 16rem;
+  height: 20rem;
+  background-color: white;
+  margin: auto;
+  position: relative;
+  top: 10%;
+  border-radius: 40px;
+  border: solid 10px white;
+}
+
+.weather-bg {
+  position: relative;
+  top: 8.9rem;
+  left: 18px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 4rem;
+  height: 4rem;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -27,11 +27,12 @@ html {
   top: 10%;
   border-radius: 40px;
   border: solid 10px white;
+  box-sizing: border-box;
 }
 
 .weather-bg {
-  position: relative;
-  top: 8.9rem;
+  position: absolute;
+  top: 12.9rem;
   left: 18px;
 }
 
@@ -50,3 +51,32 @@ html {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.input.is-info {
+  margin-top: 60px;
+  margin-left: 88px;
+  width: 250px;
+
+}
+
+.weather-image {
+  margin-left: 94px;
+}
+
+.c-f {
+  display: inline-block;
+  margin-top: 66px;
+}
+
+.button.is-danger.is-rounded {
+  margin-left: 171px;
+  margin-top: 4px;
+  transition: transform 0.5s;
+}
+
+.button.is-danger.is-rounded:hover {
+  transform: scale(1.1,1.1);
+}
+
+
+

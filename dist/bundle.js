@@ -1,1 +1,141 @@
-!function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,t),o.l=!0,o.exports}var n={};t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,n){"use strict";function r(){d.src="",s.classList.add("loader"),i.value="",l.textContent="",f.textContent=""}function o(e){function t(e){return e.done?Promise.resolve(e.value):Promise.resolve(e.value).then(function(e){return t(n.next(e))}).catch(function(e){return t(n.throw(e))})}var n=e();try{return t(n.next())}catch(e){return Promise.reject(e)}}function c(){var e,t;return regeneratorRuntime.wrap(function(n){for(;;)switch(n.prev=n.next){case 0:return n.next=2,fetch("https://api.openweathermap.org/data/2.5/weather?q="+i.value+"&APPID="+u+"&units="+m.textContent);case 2:return e=n.sent,n.next=5,e.json();case 5:if(t=n.sent,"404"!==t.cod){n.next=9;break}throw s.classList.remove("loader"),new Error(t.message+" try again");case 9:setTimeout(function(){s.classList.remove("loader");var e=t.weather[0].icon;d.src="http://openweathermap.org/img/w/"+e+".png",l.textContent=t.name,f.textContent=t.main.temp.toFixed().toString()+("Metric"===m.textContent?"°C":"°F")},1e3);case 10:case"end":return n.stop()}},a,this)}var a=regeneratorRuntime.mark(c),u="950de3e34e70eb7225ad3e90cada447d",i=document.querySelector(".input.is-info"),s=document.querySelector(".not-loading"),d=document.querySelector(".weather-image"),l=document.querySelector(".title"),f=document.querySelector(".subtitle"),m=document.querySelector(".button.is-danger.is-rounded");m.addEventListener("click",function(){"Metric"===m.textContent?m.textContent="Imperial":m.textContent="Metric"}),i.addEventListener("keydown",function(e){13===e.keyCode&&(o(c).catch(function(e){return alert(e.message)}),r())})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+const apiKey = '950de3e34e70eb7225ad3e90cada447d';
+const searchCity = document.querySelector('.input.is-info');
+const loader = document.querySelector('.not-loading');
+let weatherImg = document.querySelector('.weather-image');
+let cityName = document.querySelector('.title');
+let degrees = document.querySelector('.subtitle');
+let tempUnit = document.querySelector('.button.is-danger.is-rounded');
+
+tempUnit.addEventListener('click', function() {
+  if (tempUnit.textContent === 'Metric') {
+    tempUnit.textContent = 'Imperial';
+  } else {
+    tempUnit.textContent = 'Metric';
+  }
+});
+
+searchCity.addEventListener('keydown', function(e) {
+  if (e.keyCode === 13) {
+    run(gen).catch(err => alert(err.message));
+    resetRender();
+  }
+});
+
+function resetRender() {
+  weatherImg.src = "";
+  loader.classList.add('loader');
+  searchCity.value = "";
+  cityName.textContent = "";
+  degrees.textContent = "";
+
+}
+
+function run(generator) {
+  const genObject = generator();
+
+  function iterate(iteration) {
+    if (iteration.done) return Promise.resolve(iteration.value);
+
+    return Promise.resolve(iteration.value)
+    .then(data => iterate(genObject.next(data)))
+    .catch(data => iterate(genObject.throw(data)));
+  }
+
+  try {
+    return iterate(genObject.next());
+  } catch (err) {
+    return Promise.reject(err);
+  }
+
+}
+
+
+function *gen() {
+  let weatherResponse = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity.value}&APPID=${apiKey}&units=${tempUnit.textContent}`);
+  let weather = yield weatherResponse.json();
+  if (weather.cod === '404') {
+    loader.classList.remove('loader');
+    throw new Error(`${weather.message} try again`);
+  }
+
+  setTimeout(() => {
+    loader.classList.remove('loader')
+    const icon = weather.weather[0].icon;
+    weatherImg.src = `http://openweathermap.org/img/w/${icon}.png`;
+    cityName.textContent = weather.name;
+    degrees.textContent = weather.main.temp.toFixed().toString() + `${tempUnit.textContent === "Metric" ? "°C" : "°F"}`;
+  },1000);
+
+}
+
+/***/ })
+/******/ ]);

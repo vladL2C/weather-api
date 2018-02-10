@@ -50,8 +50,6 @@ function run(generator) {
 }
 
 
-
-
 function *gen() {
   let weatherResponse = yield fetch(`https://api.openweathermap.org/data/2.5/weather?q=${searchCity.value}&APPID=${apiKey}&units=${tempUnit.textContent}`);
   let weather = yield weatherResponse.json();

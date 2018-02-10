@@ -1,23 +1,25 @@
 {
-  "name": "weather",
+  "name": "weather-api",
   "version": "1.0.0",
   "description": "",
-  "main": "weather.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --progress -p",
-    "watch": "webpack --progress --watch",
-    "server": "webpack-dev-server --open"
+    "watch": "webpack --progress -watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladL2C/weather-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+  "bugs": {
+    "url": "https://github.com/vladL2C/weather-api/issues"
   },
-  "dependencies": {}
+  "homepage": "https://github.com/vladL2C/weather-api#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
 }
